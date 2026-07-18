@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MONO — Photographer Portfolio</title>
+  <meta name="description" content="Чёрно-белое портфолио фотографа. Портреты, стрит, пейзаж, архитектура." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Noise / paper texture overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Ambient animated background glow -->
+  <div class="bg-aurora" aria-hidden="true">
+    <span class="bg-aurora__blob bg-aurora__blob--1"></span>
+    <span class="bg-aurora__blob bg-aurora__blob--2"></span>
+    <span class="bg-aurora__blob bg-aurora__blob--3"></span>
+  </div>
+
+  <!-- Reusable SVG definitions (sparkle + rough sketch filter) -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="ic-spark" viewBox="0 0 100 100">
+        <path d="M50 0 C54 38 62 46 100 50 C62 54 54 62 50 100 C46 62 38 54 0 50 C38 46 46 38 50 0Z" />
+      </symbol>
+      <filter id="rough" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.018" numOctaves="3" seed="7" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="#home" class="nav__logo"><span data-i18n="logo">AIBOLAT</span><span>.</span></a>
+    <nav class="nav__links">
+      <a href="#home" data-i18n="nav.home">Home</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <button class="lang-switch glow-btn" id="langSwitch" type="button" aria-label="Change language">
+        <span class="lang-switch__cur">RU</span>
+        <span class="lang-switch__sep">→</span>
+        <span class="lang-switch__other">EN</span>
+      </button>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <!-- bento photo mosaic background -->
+    <div class="hero__bg" id="heroBg" aria-hidden="true">
+      <div class="hero__bg-grid">
+        <div class="hero__bg-cell" style="background-image:url(/images/gallery-street.png)"></div>
+        <div class="hero__bg-cell" style="background-image:url(/images/gallery-landscape.png)"></div>
+        <div class="hero__bg-cell" style="background-image:url(/images/gallery-architecture.png)"></div>
+        <div class="hero__bg-cell" style="background-image:url(/images/gallery-wedding.png)"></div>
+        <div class="hero__bg-cell" style="background-image:url(/images/gallery-nature.png)"></div>
+        <div class="hero__bg-cell" style="background-image:url(/images/about-portrait.jpg)"></div>
+      </div>
+      <div class="hero__bg-overlay"></div>
+    </div>
+
+    <!-- collage decorations -->
+    <div class="doodle-star doodle-star--hero" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <path filter="url(#rough)" fill="#c0362c" stroke="#0a0a0a" stroke-width="3"
+          d="M60 8 74 46 114 46 82 70 94 110 60 86 26 110 38 70 6 46 46 46Z" />
+        <path filter="url(#rough)" fill="none" stroke="#0a0a0a" stroke-width="2" opacity="0.65"
+          d="M60 15 71 48 106 48 80 68 90 102 60 82 30 102 40 68 14 48 49 48Z" />
+      </svg>
+    </div>
+    <span class="spark spark--h1 spark--lg" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <span class="spark spark--h2 spark--sm spark--red spark--d2" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <span class="spark spark--h3 spark--d1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <span class="doodle-arrow doodle-arrow--hero" aria-hidden="true">
+      <svg viewBox="0 0 100 60"><path d="M4 8 C 30 6 52 18 60 44 M60 44 46 34 M60 44 66 28" /></svg>
+    </span>
+
+    <div class="hero__meta">
+      <span data-i18n="hero.meta1">Photographer Portfolio</span>
+      <span data-i18n="hero.meta2">Est. 2016</span>
+    </div>
+    <div class="hero__inner">
+      <h1 class="display">
+        <span data-i18n="hero.title1">PHOTO</span><span class="outline" data-i18n="hero.title2">GRAPH</span>
+      </h1>
+      <p class="script"><span data-i18n="hero.scriptWord">Portfolio</span>
+        <span class="scribble" aria-hidden="true">
+          <svg viewBox="0 0 320 26" preserveAspectRatio="none">
+            <path d="M4 16 C 50 4 80 24 130 13 S 232 4 282 19 314 21 316 11" />
+          </svg>
+        </span>
+      </p>
+      <p class="hero__lead" data-i18n="hero.lead">
+        Ловлю свет и тень. Чёрно-белая история о людях, городе и тишине.
+      </p>
+      <div class="hero__cta">
+        <a href="#work" class="btn glow-btn" data-i18n="hero.cta1">Смотреть работы</a>
+        <a href="#pricing" class="btn btn--ghost glow-btn-ghost" data-i18n="hero.cta2">Смотреть цены</a>
+      </div>
+    </div>
+    <img class="hero__img glow-frame" id="heroImg" src="/images/hero.jpg" alt="Портрет фотографа Aibolat Amanzholov" />
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>PORTRAIT ✦ STREET ✦ LANDSCAPE ✦ ARCHITECTURE ✦ WEDDING ✦ FINE ART ✦</span>
+        <span>PORTRAIT ✦ STREET ✦ LANDSCAPE ✦ ARCHITECTURE ✦ WEDDING ✦ FINE ART ✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <span class="spark spark--a1 spark--red" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <div class="about__text reveal">
+      <p class="eyebrow" data-i18n="about.eyebrow">01 — About</p>
+      <h2 class="section-title"><span data-i18n="about.hello">HELLO,</span><br /><span data-i18n="about.iam">I&apos;AM</span> <span class="script script--sm">Aibolat</span></h2>
+      <p data-i18n="about.p1">
+        Меня зовут Aibolat Amanzholov. Я фотограф, влюблённый в монохром. Эта подборка —
+        коллекция работ, которые отражают мой взгляд, стиль и путь.
+      </p>
+      <p data-i18n="about.p2">
+        Превращаю идеи в чистые, смелые кадры, созданные, чтобы оставить след.
+      </p>
+      <div class="stats">
+        <div><strong data-count="450">0</strong><span data-i18n="about.stat1">Съёмок</span></div>
+        <div><strong data-count="8">0</strong><span data-i18n="about.stat2">Лет опыта</span></div>
+        <div><strong data-count="30">0</strong><span data-i18n="about.stat3">Наград</span></div>
+      </div>
+    </div>
+    <div class="about__img reveal">
+      <img src="/images/about-portrait.jpg" alt="Фотограф в полный рост" />
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <span class="spark spark--w1 spark--lg" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <span class="spark spark--w2 spark--sm spark--red spark--d3" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <div class="work__head reveal">
+      <p class="eyebrow" data-i18n="work.eyebrow">02 — Selected Work</p>
+      <h2 class="section-title"><span data-i18n="work.title">GALLERY</span> <span class="script script--sm">Designs</span></h2>
+    </div>
+
+    <div class="grid grid--bento" id="grid">
+      <figure class="card card--tall" data-cat="portrait">
+        <img src="/images/gallery-portrait.png" alt="Портрет в студии" />
+        <figcaption><span>Portrait</span><em>Studio No.12</em></figcaption>
+      </figure>
+      <figure class="card" data-cat="street">
+        <img src="/images/gallery-street.png" alt="Стрит фотография" />
+        <figcaption><span>Street</span><em>City Lines</em></figcaption>
+      </figure>
+      <figure class="card card--wide" data-cat="architecture">
+        <img src="/images/gallery-architecture.png" alt="Архитектура" />
+        <figcaption><span>Architecture</span><em>Geometry</em></figcaption>
+      </figure>
+      <figure class="card" data-cat="landscape">
+        <img src="/images/gallery-landscape.png" alt="Горный пейзаж" />
+        <figcaption><span>Landscape</span><em>Silent Peaks</em></figcaption>
+      </figure>
+      <figure class="card card--tall" data-cat="landscape">
+        <img src="/images/gallery-nature.png" alt="Макро природа" />
+        <figcaption><span>Fine Art</span><em>Details</em></figcaption>
+      </figure>
+      <figure class="card" data-cat="portrait">
+        <img src="/images/gallery-wedding.png" alt="Свадебная съёмка" />
+        <figcaption><span>Wedding</span><em>Forever</em></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <span class="spark spark--p1 spark--lg" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <span class="spark spark--p2 spark--sm spark--red spark--d2" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <div class="pricing__head reveal">
+      <p class="eyebrow" data-i18n="pricing.eyebrow">03 — Pricing</p>
+      <h2 class="section-title"><span data-i18n="pricing.title">PRICE</span> <span class="script script--sm">List</span></h2>
+    </div>
+
+    <!-- Package cards -->
+    <div class="price-grid">
+      <div class="price-card reveal glow-card">
+        <div class="price-card__photo" style="background-image:url(/images/gallery-wedding.png)"></div>
+        <h3 class="price-card__title">STANDART</h3>
+        <p class="price-card__subtitle" data-i18n="pricing.standart.subtitle">Для камерных торжеств и банкетной части</p>
+        <ul class="price-card__list">
+          <li data-i18n="pricing.standart.i1">1 профессиональный фотограф</li>
+          <li data-i18n="pricing.standart.i2">6 часов съёмки</li>
+          <li data-i18n="pricing.standart.i3">300–500 фото в авторской художественной обработке</li>
+          <li data-i18n="pricing.standart.i4">Персональная онлайн-галерея</li>
+          <li data-i18n="pricing.standart.i5">Готовые фотографии в течение месяца</li>
+          <li data-i18n="pricing.standart.i6">Резервная копия фотографий — 12 месяцев</li>
+        </ul>
+        <div class="price-card__price glow-text-soft">300.000 <span>₸</span></div>
+      </div>
+
+      <div class="price-card price-card--featured reveal glow-card">
+        <span class="price-card__badge" data-i18n="pricing.elite.badge">Хит</span>
+        <div class="price-card__photo" style="background-image:url(/images/gallery-landscape.png)"></div>
+        <h3 class="price-card__title">ELITE</h3>
+        <p class="price-card__subtitle" data-i18n="pricing.elite.subtitle">Идеальное решение для полного свадебного дня</p>
+        <ul class="price-card__list">
+          <li data-i18n="pricing.elite.i1">Полный свадебный день</li>
+          <li data-i18n="pricing.elite.i2">2 профессиональных фотографа</li>
+          <li data-i18n="pricing.elite.i3">Съёмка в течение всего свадебного дня</li>
+          <li data-i18n="pricing.elite.i4">600–800 фото в авторской художественной обработке</li>
+          <li data-i18n="pricing.elite.i5">Удобная онлайн-галерея для вас и гостей</li>
+          <li data-i18n="pricing.elite.i6">QR-код — гости получают фото уже во время банкета</li>
+          <li data-i18n="pricing.elite.i7">Резервная копия фотографий — 12 месяцев</li>
+        </ul>
+        <div class="price-card__price glow-text-soft">500.000 <span>₸</span></div>
+      </div>
+
+      <div class="price-card reveal glow-card">
+        <div class="price-card__photo" style="background-image:url(/images/gallery-nature.png)"></div>
+        <h3 class="price-card__title">PREMIUM</h3>
+        <p class="price-card__subtitle" data-i18n="pricing.premium.subtitle">Максимальный комфорт и безупречный результат</p>
+        <ul class="price-card__list">
+          <li data-i18n="pricing.premium.i1">Полный свадебный день</li>
+          <li data-i18n="pricing.premium.i2">3 профессиональных фотографа</li>
+          <li data-i18n="pricing.premium.i3">800–1200 фото в авторской художественной обработке</li>
+          <li data-i18n="pricing.premium.i4">Удобная онлайн-галерея для вас и гостей</li>
+          <li data-i18n="pricing.premium.i5">QR-код во время банкета</li>
+          <li data-i18n="pricing.premium.i6">Премиальная фотокнига 30×30 см, 15 разворотов</li>
+          <li data-i18n="pricing.premium.i7">Резервная копия фотографий — 12 месяцев</li>
+        </ul>
+        <div class="price-card__price glow-text-soft">800.000 <span>₸</span></div>
+      </div>
+    </div>
+
+    <!-- Individual session + additional services -->
+    <div class="price-extra">
+      <div class="price-box reveal glow-card">
+        <h3 class="price-box__title" data-i18n="pricing.individual.title">Индивидуальная фотосессия</h3>
+        <ul class="price-box__list">
+          <li data-i18n="pricing.individual.i1">1 час съёмки</li>
+          <li data-i18n="pricing.individual.i2">50–100 фото в авторской обработке</li>
+          <li data-i18n="pricing.individual.i3">10 фото в детальной ретуши</li>
+          <li data-i18n="pricing.individual.i4">Онлайн-галерея</li>
+          <li data-i18n="pricing.individual.i5">Фотографии будут готовы за 2–3 дня</li>
+          <li data-i18n="pricing.individual.i6">Аренда студии оплачивается отдельно</li>
+        </ul>
+        <div class="price-box__price">70.000 <span>₸</span></div>
+      </div>
+
+      <div class="price-box reveal glow-card">
+        <h3 class="price-box__title" data-i18n="pricing.additional.title">Дополнительные услуги</h3>
+        <ul class="price-box__list price-box__list--rows">
+          <li><span data-i18n="pricing.additional.s1">Фотокнига 30×30 см</span><b>150.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s2">Второй фотограф</span><b>150.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s3">Семейная фотосессия</span><b>150.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s4">Услуга QR</span><b>150.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s5">Экспресс-обработка (1 неделя)</span><b>100.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s6">Индивидуальный флешбокс</span><b>50.000 ₸</b></li>
+          <li><span data-i18n="pricing.additional.s7">Часовая съёмка (мин. 3 часа)</span><b>50.000 ₸</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Important information -->
+    <div class="price-info reveal">
+      <h3 class="price-info__title" data-i18n="pricing.info.title">Важная информация</h3>
+      <ul class="price-info__list">
+        <li data-i18n="pricing.info.i1">Ваша дата бронируется по предоплате в сумме 50.000 ₸.</li>
+        <li data-i18n="pricing.info.i2">Предоплата является невозвратной.</li>
+        <li data-i18n="pricing.info.i3">Остаток передаётся наличными в день съёмки.</li>
+        <li data-i18n="pricing.info.i4">Доп. час — 50.000 ₸.</li>
+        <li data-i18n="pricing.info.i5">Готовые фотографии вы получаете ссылкой для скачивания.</li>
+        <li data-i18n="pricing.info.i6">Все фотографии в авторской обработке, без исходников.</li>
+        <li data-i18n="pricing.info.i7">Ивенты в других городах Казахстана и за рубежом предусматривают дополнительный трансфер и проживание за счёт приглашающей стороны.</li>
+      </ul>
+      <h4 class="price-info__subtitle" data-i18n="pricing.rider.title">Бытовой райдер (другие города)</h4>
+      <ul class="price-info__list">
+        <li data-i18n="pricing.rider.i1">Оплачивается перелёт в пункт назначения и обратно (Air Astana).</li>
+        <li data-i18n="pricing.rider.i2">Оплачивается трансфер в аэропорт.</li>
+        <li data-i18n="pricing.rider.i3">Оплачивается отель + завтрак (если поездка дольше 12 часов).</li>
+      </ul>
+      <a href="https://wa.me/77016237107" class="btn glow-btn price-info__cta" data-i18n="pricing.cta">Забронировать дату</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <span class="spark spark--s1 spark--d1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#ic-spark" /></svg></span>
+    <div class="services__head reveal">
+      <p class="eyebrow" data-i18n="services.eyebrow">04 — Services</p>
+      <h2 class="section-title"><span data-i18n="services.title">SKILLS &amp;</span> <span class="script script--sm">Tools</span></h2>
+    </div>
+    <div class="services__list">
+      <div class="service reveal glow-card">
+        <span class="service__num">01</span>
+        <h3 data-i18n="services.s1.title">Портретная съёмка</h3>
+        <p data-i18n="services.s1.desc">Студийные и уличные портреты с драматичным светом.</p>
+      </div>
+      <div class="service reveal glow-card">
+        <span class="service__num">02</span>
+        <h3 data-i18n="services.s2.title">Свадьбы &amp; события</h3>
+        <p data-i18n="services.s2.desc">Живые, честные кадры важных моментов.</p>
+      </div>
+      <div class="service reveal glow-card">
+        <span class="service__num">03</span>
+        <h3 data-i18n="services.s3.title">Пейзаж &amp; архитектура</h3>
+        <p data-i18n="services.s3.desc">Монохромная геометрия города и природы.</p>
+      </div>
+      <div class="service reveal glow-card">
+        <span class="service__num">04</span>
+        <h3 data-i18n="services.s4.title">Ретушь &amp; печать</h3>
+        <p data-i18n="services.s4.desc">Профессиональная обработка и подготовка к печати.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <p class="script contact__script" data-i18n="contact.script">For Contact</p>
+      <h2 class="display display--thanks glow-text-soft" data-i18n="contact.title">THANK YOU</h2>
+      <a href="https://wa.me/77016237107" class="pill glow-btn" data-i18n="contact.pill">CONTACT</a>
+      <div class="contact__row">
+        <a href="tel:+77016237107">📞 +7 701 623 7107</a>
+        <a href="#">◎ aibolat_amanzholov</a>
+        <a href="mailto:aibolat.amanzholov@gmail.com">✉ aibolat.amanzholov@gmail.com</a>
+      </div>
+    </div>
+    <footer class="footer">© <span id="year"></span> <span data-i18n="footer.text">Aibolat Amanzholov — Monochrome Photography</span></footer>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
